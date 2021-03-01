@@ -107,7 +107,7 @@ resource "azurerm_network_interface" "k8s_worker_nic" {
     name = "${var.ipconf}.${var.k8s_worker}${count.index}"
     subnet_id = azurerm_subnet.cp2_subnet.id
     private_ip_address_allocation = "Static"
-    private_ip_address = "10.0.1.${count.index + var.first_ip}"
+    private_ip_address = "10.0.1.${count.index + var.first_ip + 1}"
     public_ip_address_id = azurerm_public_ip.k8s_worker_pips[count.index].id
   }
 }
