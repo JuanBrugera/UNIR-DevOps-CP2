@@ -11,7 +11,7 @@ resource "azurerm_subnet" "cp2_subnet" {
   name = "subnet24.${azurerm_virtual_network.cp2_network.name}"
   resource_group_name = azurerm_resource_group.cp2_rg.name
   virtual_network_name = azurerm_virtual_network.cp2_network.name
-  address_prefixes = ["10.0.1.0/24"]
+  address_prefix = ["10.0.1.0/24"]
 }
 
 # network security group
