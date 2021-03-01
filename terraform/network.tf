@@ -19,7 +19,7 @@ resource "azurerm_network_security_group" "cp2_nsg" {
   name = "nsg24.${azurerm_virtual_network.cp2_network.name}"
   location = azurerm_resource_group.cp2_rg.location
   resource_group_name = azurerm_resource_group.cp2_rg.name
-  security_rule = {
+  security_rule {
     name = "ssh"
     priority = 1001
     direction = "Inbound"
