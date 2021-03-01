@@ -30,12 +30,12 @@ variable "virtual_machine" {
 
 variable "k8s_master" {
   type = string
-  default = "k8s_master"
+  default = "k8smaster"
 }
 
 variable "k8s_worker" {
   type = string
-  default = "k8s_worker"
+  default = "k8sworker"
 }
 
 variable "nfs" {
