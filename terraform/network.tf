@@ -1,6 +1,6 @@
 # main virtual net
 resource "azurerm_virtual_network" "cp2_network" {
-  name = "network16.${azurerm_resource_group.cp2_rg.name}"
+  name = "net.${azurerm_resource_group.cp2_rg.name}"
   location = azurerm_resource_group.cp2_rg.location
   resource_group_name = azurerm_resource_group.cp2_rg.name
   address_space = ["10.0.0.0/16"]
@@ -8,7 +8,7 @@ resource "azurerm_virtual_network" "cp2_network" {
 
 # main virtual subnet
 resource "azurerm_subnet" "cp2_subnet" {
-  name = "subnet24.${azurerm_virtual_network.cp2_network.name}"
+  name = "subnet.${azurerm_resource_group.cp2_rg.name}"
   resource_group_name = azurerm_resource_group.cp2_rg.name
   virtual_network_name = azurerm_virtual_network.cp2_network.name
   address_prefix = "10.0.1.0/24"
@@ -16,7 +16,7 @@ resource "azurerm_subnet" "cp2_subnet" {
 
 # network security group
 resource "azurerm_network_security_group" "cp2_nsg" {
-  name = "nsg24.${azurerm_virtual_network.cp2_network.name}"
+  name = "security.${azurerm_resource_group.cp2_rg.name}"
   location = azurerm_resource_group.cp2_rg.location
   resource_group_name = azurerm_resource_group.cp2_rg.name
   security_rule {
