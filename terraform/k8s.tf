@@ -59,7 +59,7 @@ resource "azurerm_network_interface" "k8s_master_nic" {
 ### virtual machines
 resource "azurerm_virtual_machine" "k8s_worker" {
   count = 2
-  name = "${var.virtual_machine}.${var.k8s_worker}${count.index}}"
+  name = "${var.virtual_machine}.${count.index}${var.k8s_worker}"
   location = azurerm_resource_group.cp2_rg.location
   resource_group_name = azurerm_resource_group.cp2_rg.name
   network_interface_ids = [element(azurerm_network_interface.k8s_worker_nic.*.id, count.index)]
