@@ -62,7 +62,7 @@ resource "azurerm_virtual_machine" "k8s_worker" {
   name = "${var.virtual_machine}.${var.k8s_worker}${count.index}}"
   location = azurerm_resource_group.cp2_rg.location
   resource_group_name = azurerm_resource_group.cp2_rg.name
-  network_interface_ids = azurerm_network_interface.k8s_worker_nic[count.index].id
+  network_interface_ids = [element(azurerm_network_interface.k8s_worker_nic.*.id, count.index)]
   vm_size = "Standard_DS1_v2"
   storage_os_disk {
     name = "${var.osdisk}.${var.k8s_worker}${count.index}"
