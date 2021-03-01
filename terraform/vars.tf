@@ -14,7 +14,7 @@ variable "first_ip" {
 # credentials vars
 variable "username" {
   type = string
-  default = "admin"
+  default = "terra"
 }
 
 variable "password" {
