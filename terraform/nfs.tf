@@ -58,6 +58,8 @@ resource "azurerm_network_interface" "cp2_nfs_nic" {
     subnet_id = azurerm_subnet.cp2_subnet.id
     private_ip_address_allocation = "Static"
     private_ip_address = "10.0.1.${var.first_ip - 1}"
+    public_ip_address_id = azurerm_public_ip.nfs_pip.id
+
   }
 }
 # Create data disk attached to virtual machine
