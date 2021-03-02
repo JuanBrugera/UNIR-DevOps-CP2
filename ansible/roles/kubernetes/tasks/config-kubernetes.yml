@@ -1,0 +1,17 @@
+---
+- name: coyping file kubernetes.repo
+  copy:
+    src: ../files/kubernetes.repo
+    dest: /etc/yum.repos.d/kubernetes.repo
+- name: installing kubernetes package
+  command: dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+- name: enabling kubelet
+  systemd:
+    name: kubelet
+    enabled: yes
+    masked: no
+- name: starting kubelet
+  systemd:
+    name: kubelet
+    state: started
+    enabled: True

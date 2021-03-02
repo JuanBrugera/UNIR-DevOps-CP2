@@ -1,0 +1,7 @@
+---
+- name: installing requirements
+  include_tasks: "./tasks/config-req.yml"
+- name: installing Docker
+  include_tasks: "./tasks/config-docker.yml"
+- name: installing Kubernetes
+  include_tasks: "./tasks/config-kubernetes.yml"

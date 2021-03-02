@@ -1,0 +1,9 @@
+---
+- name: setting FirewallD
+  include_tasks: "./tasks/config-firewalld.yml"
+- name: setting kubeadm
+  include_tasks: "./tasks/config-kubeadm.yml"
+- name: setting kubectl
+  include_tasks: "./tasks/config-root-access.yml"
+- name: setting Calico
+  include_tasks: "./tasks/config-calico.yml"

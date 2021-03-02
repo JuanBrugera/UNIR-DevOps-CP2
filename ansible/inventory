@@ -1,0 +1,10 @@
+[nfs]
+65.52.144.21
+[master]
+65.52.151.184
+[workers]
+65.52.144.177
+65.52.151.197
+[k8snodes:children]
+master
+workers

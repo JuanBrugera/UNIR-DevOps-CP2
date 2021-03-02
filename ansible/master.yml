@@ -1,0 +1,5 @@
+- name: setting master
+  hosts: master
+  become: true
+  roles:
+    - master

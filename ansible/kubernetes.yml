@@ -1,0 +1,11 @@
+---
+- name: installing kubernetes cluster
+  hosts: all
+  become: true
+  vars:
+    nfs: "65.52.144.21"
+    master: "65.52.151.184"
+    worker0: "65.52.144.177"
+    worker1: "65.52.151.197"
+  roles:
+    - kubernetes

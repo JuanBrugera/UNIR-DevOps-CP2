@@ -1,0 +1,17 @@
+---
+- name: installi tigera
+  command: kubectl apply -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+  register: installtigera
+- debug: msg="{{ installtigera.stdout }}"
+- name: copying file custom-resources.yaml
+  copy:
+    src: ../files/custom-resources.yaml
+    dest: /tmp/custom-resources.yaml
+- name: installing calico
+  command: kubectl apply -f /tmp/custom-resources.yaml
+  register: installcalico
+- debug: msg="{{ installcalico.stdout }}"
+- name: get calico pods
+  command: kubectl get pods -A
+  register: getcalico
+- debug: msg="{{ getcalico.stdout }}"

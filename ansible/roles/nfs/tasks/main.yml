@@ -1,0 +1,24 @@
+---
+- name: installing requirements
+  include_tasks: "./tasks/config-req.yml"
+- name: installing packages
+  dnf:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - nfs-utils
+    - nfs4-acl-tools
+    - wget
+    - net-tools
+- name: enabling nfs service
+  systemd:
+    name: nfs-server
+    enabled: yes
+    masked: no
+- name: starting nfs service
+  systemd:
+    name: nfs-server
+    state: started
+    enabled: True
+- name: finishing configuration
+  include_tasks: "./tasks/config-final.yml"

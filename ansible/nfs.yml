@@ -1,0 +1,10 @@
+---
+- name: installing nfs service
+  hosts: nfs
+  become: true
+  vars:
+    master: "65.52.151.184"
+    worker0: "65.52.144.177"
+    worker1: "65.52.151.197"
+  roles:
+    - nfs
