@@ -9,5 +9,5 @@
     state: reloaded
     enabled: True
 - name: adding workers to master
-  command: kubeadm join {{ master }}:6443 --token {{ token }} --discovery-token-ca-cert-hash {{ discovery-token }}
+  command: kubeadm join {{ master }}:6443 --token {{ token }} --discovery-token-ca-cert-hash {{ discoverytoken }}
   register: firewallconf

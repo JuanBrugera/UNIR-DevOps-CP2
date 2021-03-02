@@ -1,9 +1,10 @@
+---
 - name: setting workers
   hosts: workers
   become: true
   vars:
-    master: "65.52.151.184"
-    token: ""
-    discovery-token: ""
+    master: "10.0.1.10"
+    token: "4aegzb.k2x3fmhd5bka9f8g"
+    discoverytoken: "sha256:eff731fbdfba6e27f90c4b73156615080f05038d3b199a48bd80a3d9d289ea1c"
   roles:
     - worker
