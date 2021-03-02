@@ -38,6 +38,15 @@ resource "azurerm_virtual_machine" "cp2_nfs" {
   }
 }
 
+### public ip
+resource "azurerm_public_ip" "nfs_pip" {
+  name = "${var.public_ip}.${var.nfs}"
+  resource_group_name = azurerm_resource_group.cp2_rg.name
+  location = azurerm_resource_group.cp2_rg.location
+  allocation_method = "Dynamic"
+  sku = "Basic"
+}
+
 # Create network interface
 resource "azurerm_network_interface" "cp2_nfs_nic" {
   name = "${var.nic}.${var.nfs}"
