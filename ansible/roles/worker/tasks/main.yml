@@ -1,6 +1,10 @@
 ---
-- name: setting firewall
-  command: firewall-cmd --zone=public --permanent --add-port={10250,30000-32767}/tcp
+- name: setting firewall 1
+  command: firewall-cmd --zone=public --permanent --add-port=10250/tcp
+  register: firewallconf
+- debug: msg="{{ firewallconf.stdout }}"
+- name: setting firewall 2
+  command: firewall-cmd --zone=public --permanent --add-port=30000-32767/tcp
   register: firewallconf
 - debug: msg="{{ firewallconf.stdout }}"
 - name: refreshing service firewalld
