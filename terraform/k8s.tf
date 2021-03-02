@@ -35,7 +35,7 @@ resource "azurerm_public_ip" "k8s_master_pip" {
   name = "${var.public_ip}.${var.k8s_master}"
   resource_group_name = azurerm_resource_group.cp2_rg.name
   location = azurerm_resource_group.cp2_rg.location
-  allocation_method = "Dynamic"
+  allocation_method = "Static"
   sku = "Basic"
 }
 
@@ -92,7 +92,7 @@ resource "azurerm_public_ip" "k8s_worker_pips" {
   name = "${var.public_ip}.${var.k8s_worker}${count.index}"
   resource_group_name = azurerm_resource_group.cp2_rg.name
   location = azurerm_resource_group.cp2_rg.location
-  allocation_method = "Dynamic"
+  allocation_method = "Static"
   sku = "Basic"
 }
 
