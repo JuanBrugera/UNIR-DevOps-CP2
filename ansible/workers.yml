@@ -1,0 +1,9 @@
+- name: setting workers
+  hosts: workers
+  become: true
+  vars:
+    master: "65.52.151.184"
+    token: ""
+    discovery-token: ""
+  roles:
+    - worker

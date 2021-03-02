@@ -1,5 +1,0 @@
-- name: setting worker
-  hosts: worker
-  become: true
-  roles:
-    - worker
