@@ -45,9 +45,10 @@ resource "azurerm_network_interface" "cp2_nfs_nic" {
   resource_group_name = azurerm_resource_group.cp2_rg.name
 
   ip_configuration {
-    name = "VMNicConfiguration"
+    name = "${var.ipconf}.${var.nfs}"
     subnet_id = azurerm_subnet.cp2_subnet.id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
+    private_ip_address = "10.0.1.${var.first_ip - 1}"
   }
 }
 # Create data disk attached to virtual machine
