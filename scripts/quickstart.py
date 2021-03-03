@@ -24,11 +24,11 @@ if __name__ == '__main__':
     bootstrap_path = os.path.abspath(__file__)
     project_path = parent_path(bootstrap_path, 2)
     scripts_path = os.path.join(project_path, 'scripts')
-    sh_files = list(filter(is_sh, os.listdir(scripts_path)))
+    sh_files = list(sorted(filter(is_sh, os.listdir(scripts_path))))
 
     # add rwxr--r-- permissions to sh files
     for sh_file in sh_files:
         if sh_file.startswith(option):
             sh_file_path = os.path.join(scripts_path, sh_file)
             os.chmod(sh_file_path, 0o744)
-            subprocess.call([sh_file])
+            subprocess.call([sh_file_path])

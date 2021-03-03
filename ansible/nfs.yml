@@ -3,8 +3,8 @@
   hosts: nfs
   become: true
   vars:
-    master: "65.52.151.184"
-    worker0: "65.52.144.177"
-    worker1: "65.52.151.197"
+    master: "k8smaster-jbrug91.westeurope.cloudapp.azure.com"
+    worker0: "k8sworker0-jbrug91.westeurope.cloudapp.azure.com"
+    worker1: "k8sworker1-jbrug91.westeurope.cloudapp.azure.com"
   roles:
     - nfs

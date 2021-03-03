@@ -45,6 +45,7 @@ resource "azurerm_public_ip" "nfs_pip" {
   location = azurerm_resource_group.cp2_rg.location
   allocation_method = "Static"
   sku = "Basic"
+  domain_name_label = "${var.nfs}-${var.dns_sufix}"
 }
 
 # Create network interface

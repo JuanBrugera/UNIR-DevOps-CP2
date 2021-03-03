@@ -10,6 +10,10 @@ variable "first_ip" {
   default = 10
 }
 
+variable "dns_sufix" {
+  type = string
+  default = "jbrug91"
+}
 
 # credentials vars
 variable "username" {

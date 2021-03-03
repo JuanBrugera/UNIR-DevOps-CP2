@@ -37,6 +37,7 @@ resource "azurerm_public_ip" "k8s_master_pip" {
   location = azurerm_resource_group.cp2_rg.location
   allocation_method = "Static"
   sku = "Basic"
+  domain_name_label = "${var.k8s_master}-${var.dns_sufix}"
 }
 
 ### network interface
@@ -94,6 +95,8 @@ resource "azurerm_public_ip" "k8s_worker_pips" {
   location = azurerm_resource_group.cp2_rg.location
   allocation_method = "Static"
   sku = "Basic"
+  domain_name_label = "${var.k8s_worker}${count.index}-${var.dns_sufix}"
+
 }
 
 ### network interfaces
