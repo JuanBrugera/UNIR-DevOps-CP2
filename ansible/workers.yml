@@ -4,7 +4,7 @@
   become: true
   vars:
     master: "10.0.1.10"
-    token: "4aegzb.k2x3fmhd5bka9f8g"
-    discoverytoken: "sha256:eff731fbdfba6e27f90c4b73156615080f05038d3b199a48bd80a3d9d289ea1c"
+    token: "yw0ixs.rtjzw0ybfqb48adu"
+    discoverytoken: "sha256:6ce53ecf51a90bed6bc1ecffd4263a391021de75e70574c01e153ff8b7801408"
   roles:
     - worker
