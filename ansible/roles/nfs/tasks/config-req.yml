@@ -31,7 +31,7 @@
   lvol:
     vg: data_vg
     lv: nfs_lv
-    size: 10GB
+    size: 10g
 - name: create file system
   filesystem:
     fstype: ext4
