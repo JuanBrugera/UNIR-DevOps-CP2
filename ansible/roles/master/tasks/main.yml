@@ -7,3 +7,5 @@
   include_tasks: "./tasks/config-root-access.yml"
 - name: setting Calico
   include_tasks: "./tasks/config-calico.yml"
+- name: deploy grafana
+  include_tasks: "./tasks/deploy-grafana.yml"

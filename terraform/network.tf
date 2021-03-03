@@ -30,6 +30,17 @@ resource "azurerm_network_security_group" "cp2_nsg" {
     source_address_prefix = "*"
     destination_address_prefix = "*"
   }
+  security_rule {
+    name = "nodeport"
+    priority = 1002
+    direction = "Inbound"
+    access = "Allow"
+    protocol = "Tcp"
+    source_port_range = "*"
+    destination_port_range = "30000"
+    source_address_prefix = "*"
+    destination_address_prefix = "*"
+  }
 }
 # subnet association to nsg
 resource "azurerm_subnet_network_security_group_association" "cp2_snsga" {

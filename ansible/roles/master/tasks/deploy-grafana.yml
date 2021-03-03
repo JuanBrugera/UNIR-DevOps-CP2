@@ -1,0 +1,17 @@
+---
+- name: copying files from grafana
+  copy:
+    src: ../files/grafana
+    dest: /tmp/grafana
+- name: deploying grafana
+  command: kubectl apply -f /tmp/grafana/deploy.yml
+  register: deploygrafana
+- debug: msg="{{ deploygrafana.stdout }}"
+- name: config mal
+  command: kubectl apply -f /tmp/grafana/config-map.yml
+  register: configmap
+- debug: msg="{{ configmap.stdout }}"
+- name: svc
+  command: kubectl apply -f /tmp/grafana/svc.yml
+  register: deploygrafana
+- debug: msg="{{ svc.stdout }}"
