@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 import os
-import shutil
 import subprocess
 import time
 
@@ -17,7 +16,7 @@ VIRTUAL_MACHINES = [
     "nfs-jbrug91.westeurope.cloudapp.azure.com",
     "k8smaster-jbrug91.westeurope.cloudapp.azure.com",
     "k8sworker0-jbrug91.westeurope.cloudapp.azure.com",
-    "k8sworker1-jbrug91.westeurope.cloudapp.azure.com",
+    "k8sworker1-jbrug91.westeurope.cloudapp.azure.com"
 ]
 
 is_sh: Callable[[str], bool] = lambda file: file.endswith('.sh')
@@ -38,15 +37,15 @@ def ssh_copy_id(vm: str):
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
+    answers = ['yes\n', f'{PASSWORD}\n']
 
-    time.sleep(0.2)
-    proc.stdin.write('yes\n')
-    time.sleep(0.2)
-    proc.stdin.write(f'{PASSWORD}\n')
-    proc.stdin.flush()
-    stdout, stderr = proc.communicate()
-    print(stdout)
-    print(stderr)
+    for answer in answers:
+        time.sleep(0.2)
+        proc.stdin.write(answer)
+        proc.stdin.flush()
+        stdout, stderr = proc.communicate()
+        print(stdout)
+        print(stderr)
 
 
 if __name__ == '__main__':
