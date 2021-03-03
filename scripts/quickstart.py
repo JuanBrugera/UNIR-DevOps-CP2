@@ -11,7 +11,7 @@ from pathlib import Path
 HOME = Path.home()
 SSH_PATH = os.path.join(HOME, '.ssh')
 USER = 'terra'
-PASSWORD = '@._admin4dm1n$'
+PASSWORD = '@._admin4dm1n#'
 VIRTUAL_MACHINES = [
     "nfs-jbrug91.westeurope.cloudapp.azure.com",
     "k8smaster-jbrug91.westeurope.cloudapp.azure.com",
@@ -37,15 +37,13 @@ def ssh_copy_id(vm: str):
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
-    answers = ['yes\n', f'{PASSWORD}\n']
+
+    answers = ['yes', PASSWORD]
 
     for answer in answers:
-        time.sleep(0.2)
-        proc.stdin.write(answer)
+        time.sleep(1)
+        proc.stdin.write("{}\n".format(answer).encode())
         proc.stdin.flush()
-        stdout, stderr = proc.communicate()
-        print(stdout)
-        print(stderr)
 
 
 if __name__ == '__main__':
