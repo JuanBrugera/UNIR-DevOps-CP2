@@ -10,5 +10,3 @@
     worker1: "k8sworker1-jbrug91.westeurope.cloudapp.azure.com"
   roles:
     - kubernetes
-
-k8smaster-y45idumc

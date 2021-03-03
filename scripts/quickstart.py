@@ -1,9 +1,15 @@
 #!/usr/bin/python
 
 import os
+import shutil
 import subprocess
+import time
 
+from datetime import datetime, timedelta
 from typing import Callable
+from pathlib import Path
+
+ANSIBLE_CFG = '.ansible.cfg'
 
 is_sh: Callable[[str], bool] = lambda file: file.endswith('.sh')
 
@@ -24,6 +30,10 @@ if __name__ == '__main__':
 
     bootstrap_path = os.path.abspath(__file__)
     project_path = parent_path(bootstrap_path, 2)
+
+    ansible_path = os.path.join(project_path, 'ansible')
+    shutil.copy(os.path.join(ansible_path, ANSIBLE_CFG), os.path.join(Path.home(), ANSIBLE_CFG))
+
     scripts_path = os.path.join(project_path, 'scripts')
     sh_files = list(sorted(filter(is_sh, os.listdir(scripts_path))))
 
@@ -35,4 +45,9 @@ if __name__ == '__main__':
             if "ansible_master" in sh_file:
                 output = subprocess.check_output([sh_file_path]).decode()
             else:
-                subprocess.call([sh_file_path])
+                status = subprocess.check_call([sh_file_path])
+                if ("terraform_apply" in sh_file) and (status == 0):
+                    minutes = 5
+                    print(f"Waiting for {minutes} minutes for DNS to refresh")
+                    print(f"Execution will continue @ {datetime.now() + timedelta(minutes=minutes)}")
+                    time.sleep(minutes * 60)
