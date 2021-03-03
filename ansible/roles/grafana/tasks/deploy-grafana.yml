@@ -3,6 +3,12 @@
   copy:
     src: ../files/
     dest: /tmp/grafana/
+- name: creating grafana namespace
+  community.kubernetes.k8s:
+    name: grafana
+    api_version: v1
+    kind: Namespace
+    state: present
 - name: deploying grafana
   command: kubectl apply -f /tmp/grafana/deploy.yml
   register: deploygrafana
