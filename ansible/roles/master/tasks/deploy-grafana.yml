@@ -2,7 +2,7 @@
 - name: copying files from grafana
   copy:
     src: ../files/grafana
-    dest: /tmp/grafana
+    dest: /tmp
 - name: deploying grafana
   command: kubectl apply -f /tmp/grafana/deploy.yml
   register: deploygrafana

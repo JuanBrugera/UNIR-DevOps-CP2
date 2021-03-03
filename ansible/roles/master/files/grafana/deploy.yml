@@ -15,45 +15,33 @@ spec:
         app: grafana
     spec:
       containers:
+      - name: grafana
+        image: grafana/grafana:latest
+        ports:
         - name: grafana
-          image: grafana/grafana:latest
-          ports:
-            - name: grafana
-              containerPort: 3000
-          livenessProbe:
-            httpGet:
-              path: /api/health
-              port: 3000
-          readinessProbe:
-            httpGet:
-              path: /api/health
-              port: 3000
-            initialDelaySeconds: 60
-            timeoutSeconds: 9
-            failureThreshold: 10
-            periodSeconds: 10
-          resources:
-            limits:
-              memory: "2Gi"
-              cpu: "1000m"
-            requests:
-              memory: "1Gi"
-              cpu: "500m"
-          volumeMounts:
-            - mountPath: /var/lib/grafana
-              name: grafana-storage
-            - mountPath: /etc/grafana/
-              name: config
-            - mountPath: /etc/grafana/provisioning/datasources
-              name: grafana-datasources
-              readOnly: false
+          containerPort: 3000
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+          - mountPath: /var/lib/grafana
+            name: grafana-storage
+          - mountPath: /etc/grafana/
+            name: config
+          - mountPath: /etc/grafana/provisioning/datasources
+            name: grafana-datasources
+            readOnly: false
       volumes:
         - name: grafana-storage
-          emptyDir: { }
+          emptyDir: {}
         - name: config
           configMap:
-            name: grafana-config
+              name: grafana-config
         - name: grafana-datasources
           configMap:
-            defaultMode: 420
-            name: grafana-datasources
+              defaultMode: 420
+              name: grafana-datasources
