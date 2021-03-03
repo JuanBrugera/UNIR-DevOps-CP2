@@ -24,7 +24,7 @@
 - name: deactivating SELinux
   command: sed -i s/=enforcing/=disabled/g /etc/selinux/config
 - name: wipe sdc
-  command: wipefs -a /dev/sdc
+  command: wipefs -af /dev/sdc
 - name: vgcreate
   lvg:
     vg: data_vg
