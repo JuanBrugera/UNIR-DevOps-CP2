@@ -1,10 +1,10 @@
 [nfs]
-65.52.144.21
+nfs-jbrug91.westeurope.cloudapp.azure.com
 [master]
-65.52.151.184
+k8smaster-jbrug91.westeurope.cloudapp.azure.com
 [workers]
-65.52.144.177
-65.52.151.197
+k8sworker0-jbrug91.westeurope.cloudapp.azure.com
+k8sworker1-jbrug91.westeurope.cloudapp.azure.com
 [k8snodes:children]
 master
 workers

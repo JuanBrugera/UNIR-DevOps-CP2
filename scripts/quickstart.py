@@ -21,6 +21,7 @@ if __name__ == '__main__':
     for k, v in options.items():
         print("{}: {}".format(k, v))
     option = input("Please select an option: ")
+
     bootstrap_path = os.path.abspath(__file__)
     project_path = parent_path(bootstrap_path, 2)
     scripts_path = os.path.join(project_path, 'scripts')
@@ -31,4 +32,7 @@ if __name__ == '__main__':
         if sh_file.startswith(option):
             sh_file_path = os.path.join(scripts_path, sh_file)
             os.chmod(sh_file_path, 0o744)
-            subprocess.call([sh_file_path])
+            if "ansible_master" in sh_file:
+                output = subprocess.check_output([sh_file_path]).decode()
+            else:
+                subprocess.call([sh_file_path])
