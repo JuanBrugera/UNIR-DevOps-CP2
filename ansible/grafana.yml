@@ -1,0 +1,5 @@
+- name: setting grafana
+  hosts: master
+  become: true
+  roles:
+    - grafana
