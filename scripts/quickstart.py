@@ -47,12 +47,16 @@ def ssh_copy_id(vm: str):
 
     time.sleep(0.5)
     proc.stdin.write("{}\n".format(PASSWORD).encode())
-    time.sleep(0.5)
     proc.stdin.flush()
+    print(proc.communicate())
 
 
 if __name__ == '__main__':
-    begin_at = int(sys.argv[1])
+    try:
+        begin_at = sys.argv[1]
+    except IndexError:
+        begin_at = 0
+
     options = {'0': 'apply and deploy', '1': 'destroy'}
     for k, v in options.items():
         print("{}: {}".format(k, v))
@@ -66,7 +70,8 @@ if __name__ == '__main__':
             # add rwxr--r-- permissions to sh files
             os.chmod(sh_file_path, 0o744)
             if "ansible_master" in sh_file:
-                output = subprocess.check_output([sh_file_path]).decode()
+                # output = subprocess.check_output([sh_file_path]).decode()
+                subprocess.check_call([sh_file_path])
             elif "ansible_nfs" in sh_file:
                 known_hosts = os.path.join(SSH_PATH, 'known_hosts')
                 shutil.copy(os.path.join(PROJECT_PATH, 'files', '.ssh', 'config'),
