@@ -36,7 +36,7 @@ is_sh: Callable[[str], bool] = lambda file: file.endswith('.sh')
 
 if __name__ == '__main__':
     try:
-        begin_at = sys.argv[1]
+        begin_at = int(sys.argv[1])
     except IndexError:
         begin_at = 0
 
