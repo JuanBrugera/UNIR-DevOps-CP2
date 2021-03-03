@@ -23,7 +23,7 @@ variable "username" {
 
 variable "password" {
   type = string
-  default = "73tt44n51bl3"
+  default = "73tt4_4n51bl3"
 }
 
 # resources vars

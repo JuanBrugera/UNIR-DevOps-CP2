@@ -27,6 +27,10 @@ resource "azurerm_virtual_machine" "k8s_master" {
   }
   os_profile_linux_config {
     disable_password_authentication = false
+    ssh_keys {
+      key_data = file("~/.ssh/id_rsa.pub")
+      path = "/home/${var.username}/.ssh/authorized_keys"
+    }
   }
 }
 
@@ -84,6 +88,10 @@ resource "azurerm_virtual_machine" "k8s_worker" {
   }
   os_profile_linux_config {
     disable_password_authentication = false
+    ssh_keys {
+      key_data = file("~/.ssh/id_rsa.pub")
+      path = "/home/${var.username}/.ssh/authorized_keys"
+    }
   }
 }
 
