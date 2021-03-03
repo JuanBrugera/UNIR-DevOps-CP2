@@ -61,9 +61,9 @@ if __name__ == '__main__':
                 else:
                     token_value = token.group(1)
                     discovery_value = discovery.group(1)
-                    with open(os.path.join(ANSIBLE_PATH, 'workers.yml.template')) as source:
+                    with open(os.path.join(ANSIBLE_PATH, 'workers.yml.template'), 'r') as source:
                         data = source.read()
-                        with open(os.path.join(ANSIBLE_PATH, 'workers.yml')) as destination:
+                        with open(os.path.join(ANSIBLE_PATH, 'workers.yml'), 'w') as destination:
                             destination.write(
                                 data.replace("@DISCOVERY@", discovery_value).replace("@TOKEN@", token_value))
                             destination.close()
@@ -73,6 +73,7 @@ if __name__ == '__main__':
                     os.path.join(PROJECT_PATH, 'files', '.ssh', 'config'),
                     os.path.join(SSH_PATH, 'config')
                 )
+                subprocess.call([sh_file_path])
             else:
                 status = subprocess.check_call([sh_file_path])
                 if ("terraform_apply" in sh_file) and (status == 0):
